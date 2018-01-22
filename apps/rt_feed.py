@@ -80,7 +80,7 @@ def release(_graph, _device):
 def load_tensor_and_get_result(_graph, _image):
     _graph.LoadTensor(_image.astype(numpy.float16), 'user object')
     (_output, _) = _graph.GetResult()
-    return _output, _output.argsort()[::-1][6]
+    return _output, _output.argsort()[::-1][:6]
 
 
 # ----------------------------- End of function definitions -----------------------------
