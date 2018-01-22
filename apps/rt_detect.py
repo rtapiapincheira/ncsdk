@@ -246,7 +246,7 @@ while True:
     if not ret:
         break
 
-    (w, h) = frame.shape
+    (w, h, _) = frame.shape
 
     if w != h:
         if w < h:
