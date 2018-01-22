@@ -250,10 +250,10 @@ while True:
 
     if w != h:
         if w < h:
-            b = (h - w) / 2
+            b = int((h - w) / 2)
             frame = cv2.copyMakeBorder(frame, 0, 0, b, b, cv2.BORDER_CONSTANT, 0)
         else:
-            b = (w - h) / 2
+            b = int((w - h) / 2)
             frame = cv2.copyMakeBorder(frame, b, b, 0, 0, cv2.BORDER_CONSTANT, 0)
 
     # Read image from file, resize it to network width and height
