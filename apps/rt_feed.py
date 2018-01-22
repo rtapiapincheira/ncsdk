@@ -79,28 +79,30 @@ ilsvrc_mean = get_means_file('../examples/data/ilsvrc12/ilsvrc_2012_mean.npy')
 # Camera #0
 # cap = cv2.VideoCapture(0)
 
-cap = cv2.VideoCapture('video.mp4')
+cap = cv2.VideoCapture('/home/rene/Desktop/Videos/video1.mp4')
 
 while True:
     ret, frame = cap.read()
 
-    print(frame.shape)
+    if not frame:
+        break
 
-    img = prepare_image(frame, ilsvrc_mean, (227, 227))
-    output, order = load_tensor_and_get_result(graph, img)
+    if False:
+        img = prepare_image(frame, ilsvrc_mean, (227, 227))
+        output, order = load_tensor_and_get_result(graph, img)
 
-    print('\n------- predictions --------')
-    for i in range(0, 5):
-        print('prediction ' + str(i) + ' (probability ' + str(output[order[i]] * 100) + '%) is ' + labels[
-            order[i]] + '  label index is: ' + str(order[i]))
-    print('\n----------------------------')
+        print('\n------- predictions --------')
+        for i in range(0, 0):
+            oi = order[i]
+            text = '(probability ' + str(output[oi] * 100) + '%) is ' + labels[oi] + '  label index is: ' + str(oi)
+            cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+            # print('prediction ' + str(i) + )
 
-    # Our operations on the frame come here
-    # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        print('\n----------------------------')
 
     # Display the resulting frame
     cv2.imshow('frame', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(0) & 0xFF == ord('q'):
         break
 
 # When everything done, release the capture
