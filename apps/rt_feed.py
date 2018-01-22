@@ -2,6 +2,7 @@ from mvnc import mvncapi as mvnc
 
 import cv2
 import numpy
+import sys
 
 
 def get_file_image(_image):
@@ -109,7 +110,7 @@ while True:
     if not ret:
         break
 
-    if False:
+    if len(sys.argv) >= 2 and sys.argv[1] == 'detect=true':
         img = prepare_image(frame, ilsvrc_mean, (227, 227))
         output, order = load_tensor_and_get_result(graph, img)
 
@@ -128,7 +129,9 @@ while True:
         break
 
 # When everything done, release the capture
+print('Releasing camera resources ...')
 cap.release()
 cv2.destroyAllWindows()
+print('    OK')
 
 release(graph, device)
