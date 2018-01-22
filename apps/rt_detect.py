@@ -248,7 +248,8 @@ while True:
     # and finally convert to convert to float16 to pass to LoadTensor as input for an inference
     input_image = cv2.resize(frame, dim, cv2.INTER_LINEAR)
     display_image = input_image
-    input_image = input_image.astype(numpy.float32).divide(input_image, 255.0)
+    input_image = input_image.astype(numpy.float32)
+    input_image = numpy.divide(input_image, 255.0)
 
     # Load tensor and get result.  This executes the inference on the NCS
     graph.LoadTensor(input_image.astype(numpy.float16), 'user object')
