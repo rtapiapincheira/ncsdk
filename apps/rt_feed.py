@@ -120,7 +120,7 @@ while True:
         for i in range(0, 5):
             oi = order[i]
             text = '(probability ' + str(output[oi] * 100) + '%) is ' + labels[oi] + '  label index is: ' + str(oi)
-            cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, 255)
+            cv2.putText(frame, text, (20, 10 + 20 * (i + 1)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, 255)
             print(text)
         print('\n----------------------------')
 
