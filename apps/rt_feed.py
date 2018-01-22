@@ -114,13 +114,15 @@ while True:
         img = prepare_image(frame, ilsvrc_mean, (227, 227))
         output, order = load_tensor_and_get_result(graph, img)
 
+        print(output)
+        print(order)
+
         print('\n------- predictions --------')
-        for i in range(0, 0):
+        for i in range(0, 5):
             oi = order[i]
             text = '(probability ' + str(output[oi] * 100) + '%) is ' + labels[oi] + '  label index is: ' + str(oi)
             cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
-            # print('prediction ' + str(i) + )
-
+            print(text)
         print('\n----------------------------')
 
     # Display the resulting frame
