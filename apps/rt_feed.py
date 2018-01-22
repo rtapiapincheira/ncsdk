@@ -76,7 +76,10 @@ ilsvrc_mean = get_means_file('../examples/data/ilsvrc12/ilsvrc_2012_mean.npy')
 
 # original = get_file_image('../examples/data/images/nps_electric_guitar.png')
 
-cap = cv2.VideoCapture(0)
+# Camera #0
+# cap = cv2.VideoCapture(0)
+
+cap = cv2.VideoCapture('video.mp4')
 
 while True:
     ret, frame = cap.read()
