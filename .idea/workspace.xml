@@ -19,8 +19,8 @@
       <file leaf-file-name="rt_detect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/rt_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="225" column="35" lean-forward="false" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
+            <state relative-caret-position="557">
+              <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -72,6 +72,8 @@
       <find>get_labels_file</find>
       <find>get_file_image</find>
       <find>display_objects_in_gui</find>
+      <find>waitK</find>
+      <find>waitKe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -440,8 +442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/rt_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="225" column="35" lean-forward="false" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
+        <state relative-caret-position="557">
+          <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

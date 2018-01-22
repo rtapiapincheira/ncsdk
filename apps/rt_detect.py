@@ -223,7 +223,7 @@ def display_objects_in_gui(source_image, filtered_objects, pause_time=0):
 
     window_name = 'TinyYolo (hit key to exit)'
     cv2.imshow(window_name, display_image)
-    print 'pause_time:', pause_time
+    print('pause_time:', pause_time)
     return cv2.waitKey(pause_time) & 0xFF == ord('q')
 
 
