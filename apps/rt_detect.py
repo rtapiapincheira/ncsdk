@@ -2,6 +2,7 @@ from mvnc import mvncapi as mvnc
 
 import cv2
 import numpy
+import sys.argv
 
 
 def setup_mvnc():
@@ -237,16 +238,29 @@ graph, dim = get_graph(device, '../ncappzoo/caffe/TinyYolo/graph'), (448, 448)
 
 cap = cv2.VideoCapture('/home/rene/Desktop/Videos/video1.mp4')
 
+pause_time = int(sys.argv[2]) if len(sys.argv) >= 3 else 0
+
 while True:
     ret, frame = cap.read()
 
     if not ret:
         break
 
+    (w, h) = frame.shape
+
+    if w != h:
+        if w < h:
+            b = (h - w) / 2
+            frame = cv2.copyMakeBorder(frame, 0, 0, b, b, cv2.BORDER_CONSTANT, 0)
+        else:
+            b = (w - h) / 2
+            frame = cv2.copyMakeBorder(frame, b, b, 0, 0, cv2.BORDER_CONSTANT, 0)
+
     # Read image from file, resize it to network width and height
     # save a copy in img_cv for display, then convert to float32, normalize (divide by 255),
     # and finally convert to convert to float16 to pass to LoadTensor as input for an inference
     input_image = cv2.resize(frame, dim, cv2.INTER_LINEAR)
+
     display_image = input_image
     input_image = input_image.astype(numpy.float32)
     input_image = numpy.divide(input_image, 255.0)
@@ -259,7 +273,7 @@ while True:
     filtered_objs = filter_objects(output.astype(numpy.float32), input_image.shape[1], input_image.shape[0])  # fc27 instead of fc12 for yolo_small
 
     # display the filtered objects/boxes in a GUI window
-    if display_objects_in_gui(display_image, filtered_objs):
+    if display_objects_in_gui(display_image, filtered_objs, pause_time):
         break
 
 # When everything done, release the capture
