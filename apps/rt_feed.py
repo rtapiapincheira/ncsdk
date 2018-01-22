@@ -93,7 +93,9 @@ devices = get_devices()
 
 device = choose_device(devices)
 
-graph = get_graph(device, '../examples/caffe/AlexNet/graph')
+graph, dim = get_graph(device, '../examples/caffe/AlexNet/graph'), (227, 227)
+# graph, dim = get_graph(device, '../examples/caffe/GoogleLeNet/graph'), (224, 224)
+# graph, dim = get_graph(device, '../examples/caffe/SqueezeNet/graph'), (227, 227)
 
 ilsvrc_mean = get_means_file('../examples/data/ilsvrc12/ilsvrc_2012_mean.npy')
 
@@ -113,7 +115,7 @@ while True:
         break
 
     if len(sys.argv) >= 2 and sys.argv[1] == 'detect=true':
-        img = prepare_image(frame, ilsvrc_mean, (227, 227))
+        img = prepare_image(frame, ilsvrc_mean, dim)
         output, order = load_tensor_and_get_result(graph, img)
 
         print('\n------- predictions --------')
