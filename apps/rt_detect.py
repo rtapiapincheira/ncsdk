@@ -251,10 +251,10 @@ while True:
     if w != h:
         if w < h:
             b = int((h - w) / 2)
-            frame = cv2.copyMakeBorder(frame, 0, 0, b, b, cv2.BORDER_CONSTANT, 0)
+            frame = cv2.copyMakeBorder(frame, b, b, 0, 0, cv2.BORDER_CONSTANT, 0)
         else:
             b = int((w - h) / 2)
-            frame = cv2.copyMakeBorder(frame, b, b, 0, 0, cv2.BORDER_CONSTANT, 0)
+            frame = cv2.copyMakeBorder(frame, 0, 0, b, b, cv2.BORDER_CONSTANT, 0)
 
     # Read image from file, resize it to network width and height
     # save a copy in img_cv for display, then convert to float32, normalize (divide by 255),
