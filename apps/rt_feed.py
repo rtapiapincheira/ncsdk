@@ -104,6 +104,8 @@ ilsvrc_mean = get_means_file('../examples/data/ilsvrc12/ilsvrc_2012_mean.npy')
 
 cap = cv2.VideoCapture('/home/rene/Desktop/Videos/video1.mp4')
 
+time_pause = int(sys.argv[2]) if len(sys.argv) >= 3 else 0
+
 while True:
     ret, frame = cap.read()
 
@@ -114,20 +116,17 @@ while True:
         img = prepare_image(frame, ilsvrc_mean, (227, 227))
         output, order = load_tensor_and_get_result(graph, img)
 
-        print(output)
-        print(order)
-
         print('\n------- predictions --------')
         for i in range(0, 5):
             oi = order[i]
             text = '(probability ' + str(output[oi] * 100) + '%) is ' + labels[oi] + '  label index is: ' + str(oi)
-            cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+            cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, 255)
             print(text)
         print('\n----------------------------')
 
     # Display the resulting frame
     cv2.imshow('frame', frame)
-    if cv2.waitKey(0) & 0xFF == ord('q'):
+    if cv2.waitKey(time_pause) & 0xFF == ord('q'):
         break
 
 # When everything done, release the capture
