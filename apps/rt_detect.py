@@ -2,7 +2,7 @@ from mvnc import mvncapi as mvnc
 
 import cv2
 import numpy
-import sys.argv
+import sys
 
 
 def setup_mvnc():
