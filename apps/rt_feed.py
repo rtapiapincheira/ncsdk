@@ -5,39 +5,59 @@ import numpy
 
 
 def get_file_image(_image):
-    return cv2.imread(_image)
+    print('Loading file image:' + _image)
+    r = cv2.imread(_image)
+    print('    OK')
+    return r
 
 
 def get_labels_file(_filename):
-    return numpy.loadtxt(_filename, str, delimiter='\t')
+    print('Loading labels file:' + _filename)
+    result = numpy.loadtxt(_filename, str, delimiter='\t')
+    print('    OK')
+    return result
 
 
 def setup_mvnc():
+    print('Setting MVNC up ...')
     mvnc.SetGlobalOption(mvnc.GlobalOption.LOG_LEVEL, 2)
+    print('    OK')
 
 
 def get_devices():
+    print('Getting devices ...')
     _devices = mvnc.EnumerateDevices()
     if len(_devices) == 0:
         print('No devices found')
         quit()
+    print('    OK')
     return _devices
 
 
 def get_graph(_device, _modelfile):
+    print('Loading model ...')
     with open(_modelfile, mode='rb') as f:
         blob = f.read()
-    return device.AllocateGraph(blob)
+    print('    OK')
+    print('Allocating graph object ...')
+    g = device.AllocateGraph(blob)
+    print('    OK')
+    return g
 
 
 def choose_device(_devices):
+    print('Opening device NCS #0 ...')
     d = mvnc.Device(_devices[0])
     d.OpenDevice()
+    print('    OK')
     return d
 
 
 def get_means_file(_filename):
-    return numpy.load(_filename).mean(1).mean(1)  # loading the mean file
+    print('Loading means file ...')
+    mf = numpy.load(_filename).mean(1).mean(1)  # loading the mean file
+    print('    OK')
+    return mf
 
 
 def prepare_image(_image, _ilsvrc_mean, _dim):
@@ -50,8 +70,10 @@ def prepare_image(_image, _ilsvrc_mean, _dim):
 
 
 def release(_graph, _device):
+    print('Releasing graph & device ...')
     _graph.DeallocateGraph()
     _device.CloseDevice()
+    print('    OK')
 
 
 def load_tensor_and_get_result(_graph, _image):
