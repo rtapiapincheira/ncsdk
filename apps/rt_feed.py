@@ -84,7 +84,7 @@ cap = cv2.VideoCapture('/home/rene/Desktop/Videos/video1.mp4')
 while True:
     ret, frame = cap.read()
 
-    if not frame:
+    if not ret:
         break
 
     if False:
